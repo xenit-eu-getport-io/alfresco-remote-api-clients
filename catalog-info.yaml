@@ -3,7 +3,7 @@ kind: Component
 metadata:
   name: alfresco-remote-api-clients
   labels:
-    vaus.ltd/8080/tags: prometheus
+    vaus.ltd/tags: prometheus
   annotations:
     github.com/project-slug: todorinskiz/alfresco-remote-api-clients
   tags:
