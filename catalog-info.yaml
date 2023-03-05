@@ -2,9 +2,19 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: alfresco-remote-api-clients
+  labels:
+    vaus.ltd/8080/tags: prometheus
   annotations:
     github.com/project-slug: todorinskiz/alfresco-remote-api-clients
+  tags:
+    - java
+  links:
+    - url: https://github.com/todorinskiz/alfresco-remote-api-clients/pulls
+      title: Pull Requests
+      icon: dashboard
+      type: admin-dashboard
 spec:
-  type: other
-  lifecycle: unknown
+  type: REST Client
+  lifecycle: Production
   owner: todorinskiz
+  system: alfresco
