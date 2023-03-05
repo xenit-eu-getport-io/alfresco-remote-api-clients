@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: alfresco-remote-api-clients
+  annotations:
+    github.com/project-slug: todorinskiz/alfresco-remote-api-clients
+spec:
+  type: other
+  lifecycle: unknown
+  owner: todorinskiz
