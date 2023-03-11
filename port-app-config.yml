@@ -1,0 +1,12 @@
+resources:
+  - kind: repository
+    selector:
+      query: "true" # a JQ expression that it's output (boolean) determinating wheter to report the current resource or not
+    port:
+      entity:
+        mappings:
+          identifier: ".name" # The Entity identifier will be the repository name. After the creation of the Entity the exporter will send `PATCH` requests to update this repository within Port.
+          title: ".name"
+          blueprint: '"microservice"'
+          properties:
+            readme: file://alfresco-solrapi-client/README.md
