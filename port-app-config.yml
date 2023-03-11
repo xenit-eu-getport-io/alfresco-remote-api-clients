@@ -25,3 +25,6 @@ resources:
 #           blueprint: '"microservice"'
 #           properties:
 #             readme: file://alfresco-solrapi-client/README.md
+
+
+
