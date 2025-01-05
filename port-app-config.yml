@@ -1,16 +1,53 @@
 resources:
   - kind: repository
     selector:
-      query: "true" # a JQ expression that it's output (boolean) determinating wheter to report the current resource or not
+      query: "true" # JQ boolean query. If evaluated to false - skip syncing the object.
     port:
       entity:
         mappings:
-          identifier: ".name" # The Entity identifier will be the repository name. After the creation of the Entity the exporter will send `PATCH` requests to update this repository within Port.
+          identifier: ".name" # The Entity identifier will be the repository name.
           title: ".name"
-          blueprint: '"microservice"'
+          blueprint: '"service"'
           properties:
-            url: ".html_url" # fetching from GitHub metadata the repository url and injecting it as a url proeprty
-            description: ".description" # fetching from GitHub metadata the description and injecting it as a markdown proeprty
+            readme: file://README.md
+            url: .html_url
+            defaultBranch: .default_branch
+  - kind: issue
+    selector:
+      query: ".pull_request == null" # JQ boolean query. If evaluated to false - skip syncing the object.
+    port:
+      entity:
+        mappings:
+          identifier: ".repo + (.id|tostring)"
+          title: ".title"
+          blueprint: '"githubIssue"'
+          properties:
+            creator: ".user.login"
+            assignees: "[.assignees[].login]"
+            labels: "[.labels[].name]"
+            status: ".state"
+            createdAt: ".created_at"
+            closedAt: ".closed_at"
+            updatedAt: ".updated_at"
+            description: ".body"
+            issueNumber: ".number"
+            link: ".html_url"
+          relations:
+            service: ".repo"
+
+# resources:
+#   - kind: repository
+#     selector:
+#       query: "true" # a JQ expression that it's output (boolean) determinating wheter to report the current resource or not
+#     port:
+#       entity:
+#         mappings:
+#           identifier: ".name" # The Entity identifier will be the repository name. After the creation of the Entity the exporter will send `PATCH` requests to update this repository within Port.
+#           title: ".name"
+#           blueprint: '"microservice"'
+#           properties:
+#             url: ".html_url" # fetching from GitHub metadata the repository url and injecting it as a url proeprty
+#             description: ".description" # fetching from GitHub metadata the description and injecting it as a markdown proeprty
 
 
 # resources:
